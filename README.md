@@ -11,12 +11,18 @@ To run, you need docker and docker compose installed locally, then execute the f
 docker compose up --build
 ```
 
-- Node.js app runs locally on `localhost:8011`
-  - Check `/metrics` and `/metrics-list` endpoints
-- Prometheus runs locally on `localhost:8061`
-  - Try running a query, like `EXAMPLE`
-- Grafana runs locally on `localhost:9011`
-  - You don't need to look at this, I only put it here to debug something
+Node.js app runs locally on `localhost:8011`. You can check `/metrics` and `/metrics-list` endpoints.
+
+Prometheus runs locally on `localhost:8061`. Try running a query, like:
+
+```promql
+# Calculate the average request duration during the last 5 minutes
+rate(http_request_duration_seconds_sum[5m])
+  /
+  rate(http_request_duration_seconds_count[5m])
+```
+
+Grafana runs locally on `localhost:9011`. (You don't need to look at this, I only put it here to debug an issue I thought I was having while collecting metrics from the node.js app.)
 
 ### TODO
 
